@@ -1,0 +1,1528 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>区域健康信息平台</title>
+    <link rel="shortcut" href="#" type="image/x-icon">
+    <!--引入icon------>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="echarts.common.min.js"></script>
+    <script type="text/javascript" src="echarts.min.js"></script>
+	<style type="text/css">	
+       *{
+        margin: 0;
+        padding:0;
+        text-decoration: none;
+        }
+        /*这里即设置没有下划线*/
+    	html {
+            height: 100%;
+        }
+        body {
+            height: 100%;
+            font-size: 1.1em;
+            display: block;
+            /*border:1px solid red;*/
+            width:1347px;
+            background: #f1f5f8;
+        }
+        a{
+            color:#b0b0b0;
+        }
+        a:hover{
+            color:#fff;
+        }
+        .note{
+            font-weight:normal;
+            font-size: 0.3rem;
+            color: #b3b5b7;
+        }
+        /**这里引用一个jquery事件点击触发，显示li，这是其css部分START *!*/
+img{
+    border:0;
+}
+ol, ul ,li{list-style: none;}
+
+a{
+    text-decoration: none;
+    color: red;
+}
+ul{
+    /*border: 3px solid #abcdef;*/
+    width: 200px;
+    display: none;
+}
+.aside_right>ul>li{
+	display:inline-block;
+	padding-left: 0.7rem;
+	/*border:1px solid blue;*/
+	font-size: 0.4rem;
+    padding-top: 0.2rem;
+}
+.aside_right_grsw>span{
+    cursor: pointer;
+    font-size: 0.9rem;
+    /*border: 1px solid blue;*/
+    padding-left: 0.5rem;
+    padding-top: 0.3rem;
+}
+
+ /*这里引用一个jquery事件点击触发，显示li，这是其css部分END */
+
+        /*.nav{*/
+            /*height:47px;*/
+        /*}*/
+        /*.nav_zjgs{*/
+                /*display: inline-block;*/
+                /*padding-top:14px;*/
+                /*padding-left: 0.2rem;*/
+                /*width: 35px;*/
+                /*height: 34px;*/
+                /*background: #4383ff;*/
+                /*!*float: left;*!*/
+        /*}*/
+        /*.nav_qqjkxxpt{*/
+            /*color:#3a8ee9;*/
+            /*font-weight: 500;*/
+            /*background: white;*/
+            /*cursor: pointer;*/
+            /*height: 38px;*/
+            /*width: 152px;*/
+            /*font-size: 1.05rem;*/
+            /*text-align: center;*/
+            /*!*border: 1px solid blue;*!*/
+        /**/
+            /*border-bottom: 1px solid gray;*/
+            /*display: inline-block;*/
+            /*overflow:hidden;*/
+            /*margin-left: -6px;*/
+            /*padding-top: 9px;*/
+        /*}*/
+        /*.nav_right{*/
+            /*display: inline-block;*/
+            /*float: right;*/
+            /*background: white;*/
+            /*!*border: 1px solid red;*!*/
+        /*}*/
+        /*.nav_user{*/
+            /*display: inline-block;*/
+             /*!*border: 1px solid blue;*!*/
+             /*padding-left: 698px;*/
+             /*padding-right: 200px;*/
+            /*position: relative;*/
+        /*}*/
+        /*.nav_user>span{*/
+            /*position: absolute;*/
+            /*font-size: 0.8rem;*/
+            /*font-family: sans-serif;*/
+            /*!*border: 1px solid blue;*!*/
+            /*top: 14px;*/
+            /*left: 743px;*/
+
+            /*display: inline-block;*/
+            /*text-align: center;*/
+        /*}*/
+        /*.nav_message{*/
+            /*display: inline-block;*/
+            /*!*border:1px solid green;*!*/
+            /*padding-left: 10px;*/
+            /*padding-right: 10px;*/
+            /*height: inherit;*/
+        /*}*/
+        /*.nav_man{*/
+            /*display: inline-block;*/
+            /*!*border:1px solid green;  *!*/
+            /*padding-left: 10px;*/
+            /*padding-right: 10px;*/
+        /*}*/
+        /*.nav_setting{*/
+            /*display: inline-block;*/
+            /*!*border:1px solid green;*!*/
+            /*padding-left: 10px;*/
+            /*padding-right: 10px;*/
+        /*}*/
+        /*.nav_kaiguan{*/
+            /*display: inline-block;*/
+            /*!*border:1px solid green;*!*/
+            /*padding-left: 10px;*/
+            /*padding-right: 10px;*/
+        /*}*/
+        /*.aside{*/
+        	/*width:189px;*/
+        	/*height: 100%;*/
+        	/*!*border:1px solid red;*!*/
+        	/*float: left;*/
+        /*}*/
+       /*.aside_left{*/
+            /*width: 37px;*/
+            /*!*border:1px solid green;*!*/
+            /*float: left;*/
+            /*height: 100%;*/
+            /*background: #4395fd;*/
+            /*font-size: 0.9rem;*/
+            /*!*padding-left: 0rem;*!*/
+        /*}*/
+        /*.dh,.zz,.wx,.bq{*/
+            /*border-bottom: #2e80ef;*/
+            /*color:white;*/
+        /*}*/
+        /*.aside_left>div>span{*/
+            /*padding-left:0.1rem;*/
+        /*}*/
+        /*.aside_left>div{*/
+            /*!*border:2px solid red;*!*/
+            /*padding-top: 0.68rem;*/
+            /*padding-bottom: 0.68rem;*/
+            /*text-align: center;*/
+            /*border-bottom: 1px solid gray;*/
+        /*}*/
+        /*.dh{*/
+            /*background: #1971df;*/
+        /*}*/
+
+        /*.aside_left_list{
+            width: inherit;
+            height: 32px;
+            border:1px solid blue;
+            font-size: 0.9em;
+            padding-top: 0.5em;
+        }*/
+        /*.aside_right {*/
+             /*!*padding-left: 3.2rem;*!*/
+             /*display: inline-block;*/
+
+        /*}*/
+        /**/
+        /*.aside_right_list>span {  */
+        /*!*display: block; *!*/
+        /*font-size: 0.9rem;*/
+        /*!*border: 1px solid blue;*!*/
+        /*padding-left: 0.5rem;*/
+        /*padding-top: 0.3rem;*/
+        /*}*/
+        /**/
+        .content{
+            width: 1154px;
+            /*border:1px solid blue;*/
+            /*float: right;*/
+        }
+
+        .content_top{
+            height: 220px;
+            /*background: green;*/
+        }
+        .content_top_left{
+            float: left;
+            /*border:1px solid black;*/
+            width: 580px;
+            height: 215px;
+            position: relative;
+        }
+        .content_top_left_top{
+            
+            /*border:1px solid black;*/
+            width: 560px;
+            height: 98px;
+            /*display: block;
+            float: left;*/
+            margin-top:20px;
+            margin-left: 20px;
+            background:  #f1f9ff;
+        }
+        .content_top_left_grsw{
+            position: absolute;
+            left: 40%;
+        }
+       .content_top_left_yj,.content_top_left_gjtz,.content_top_left_wjbl,
+       .content_top_left_xxtx,.content_top_left_rcap,.content_top_left_xtsz {
+            /*border:1px solid red;*/
+            height: 47px;
+            width: 80px;
+            display:inline-block;
+            float: left;
+            background: #e6f4fe;
+            margin-left: 9px;
+            margin-top: 33px;
+
+            position: relative;
+            border-radius: 4px;
+              }
+ .content_top_left_yj>img,.content_top_left_gjtz>img,.content_top_left_wjbl>img,
+       .content_top_left_xxtx>img,.content_top_left_rcap>img,.content_top_left_xtsz>img{
+                position: absolute;
+                left: 20%;
+                right: 30%;
+                top: 25%;
+                bottom: 25%;
+                background-color: #0ff;
+            }
+          .content_top_left_bottom{            
+            /*border:1px solid black;*/
+            background: #f1f9ff;
+            width: 560px;
+            height: 77px;
+            /*float: left;*/
+            margin-top:20px;
+            margin-left: 20px;
+            position: relative;
+          }
+.content_top_bottom_jkda,.content_top_bottom_tjda,.content_top_bottom_rkzt,.content_top_bottom_gxyda{
+            /*border:1px solid red;*/
+            color: white;
+            height: 32px;
+            width: 111px;
+            display:inline-block;
+            float: left;
+            background: #e6f4fe;
+            margin-left: 23px;
+            margin-top: 33px;
+            font-size: 0.8rem;
+            position: relative;
+            border-radius: 4px;
+              }
+.content_top_bottom_jkda:hover,.content_top_bottom_tjda:hover,.content_top_bottom_rkzt:hover,
+.content_top_bottom_gxyda:hover{
+    opacity: 0.6;
+}
+
+            .content_top_bottom_jkda{
+                background: #00a2ff;
+            }
+            .content_top_bottom_tjda{
+                background: #7ed321;
+            }
+            .content_top_bottom_rkzt{
+                background: #f5a623;
+            }
+            .content_top_bottom_gxyda{
+                background: #6b91ec;
+            }
+.content_top_bottom_kjfs{
+            position: absolute;
+            left: 38%;
+        }
+.content_top_bottom_jkda>span,.content_top_bottom_tjda>span,.content_top_bottom_rkzt>span,.content_top_bottom_gxyda>span{
+                display: inline-block;
+                position: absolute;
+                left: 20px;
+                top: 5px;
+}
+.content_top_bottom_jkda>span>img,.content_top_bottom_tjda>span>img,.content_top_bottom_rkzt>span>img,.content_top_bottom_gxyda>span>img{
+    position: absolute;
+    display: inline-block;
+    top:0.1rem;
+}
+       .content_top_right{
+            /*border:1px solid #c2c6c9;*/
+            width: 560px;
+            height: 195px;
+            float: right;
+            background: #f1f9ff;
+            margin-top:20px;
+            position: relative;
+        }
+       .content_top_right_jbpzqk{
+            position: absolute;
+            left: 42%
+       }
+       .content_top_right_jg{
+            position: absolute;
+            left: 27px;
+            top: 34px;
+       }
+       .content_top_right_ry{
+            position: absolute;
+            left: 27px;
+            top: 108px;
+       }
+       #chartmain2{
+        position: absolute;
+        left: 82px;
+        top:18px;
+           /*overflow: visible;*/
+       }
+       #chartmain{
+        position: absolute;
+        left: 294px;
+        top:38px;
+       }
+       .content_top_right_qkys,.content_top_right_xcys,.content_top_right_wsjsry,.content_top_right_qtjsry,
+       .content_top_right_glry{
+        border:1px solid #c2c6c9;
+        display: inline-block;
+        float: left;
+        width: 100px;
+        height: 47px;
+       }
+       .content_top_right_shuju{
+        position: absolute;
+        left: 18px;
+        top:138px;
+        text-align: center;
+       }
+       .content_top_right_qkys>span,.content_top_right_xcys>span,.content_top_right_wsjsry>span,.content_top_right_qtjsry>span,
+       .content_top_right_glry>span{
+        color:#00a2ff;
+       }
+       .content_middle{
+            height: 96px;
+            background:#f1f9ff;
+            margin-left: 20px;
+            margin-top: 20px;
+            
+            position: relative;
+
+        }
+        .content_middle_jbggws{
+            position: absolute;
+            left: 45%;
+        }
+        .content_middle_span{
+            position: absolute;
+            left: 20px;
+            top:35px;
+            text-align: center;
+        }
+        .content_middle_box{
+            height: 47px;
+            width: 99px;
+            display: inline-block;
+            border-right: 1px solid #b3b5b7;
+            float: left;
+            margin-top: -4px;
+        }
+        .content_middle_box>span{
+            font-size: 0.9rem;
+            color: #4298fb;
+        }
+      
+        .content_bottom{
+            height: 384px;
+            /*background: red;*/
+        }
+        .content_bottom_left{
+            float: left;
+           /*border-bottom-color: #f1f9ff;*/
+            margin-left: 20px;
+             background: #f1f9ff;
+            /*widths: 580px;*/
+            height: 361px;
+            margin-top: 20px;
+            position: relative;
+        }
+        .content_bottom_right{
+            /*border:1px solid black;*/
+            width: 560px;
+            height: 361px;
+            float: right;
+            background: #f1f9ff;
+            margin-top:20px;
+            position: relative; 
+        }
+        .content_bottom_right>img{
+            position: absolute;
+            left: 40%;
+        }
+        .content_bottom_left_jkda>img{
+            position: absolute;
+            left: 40%;
+        }
+
+.content_bottom_left_top_csrks,.content_bottom_left_top_jdrs{
+   /*border:1px solid black;*/
+   width: 259px;
+   height: 45px;
+   display: inline-block;
+   margin-top: 54px;
+   margin-left: 18px;
+   background: #e6f4fe;
+   position: relative;
+   /*text-align: center;*/
+   border-radius: 3px;
+}
+.content_bottom_left_top_csrks>img,.content_bottom_left_top_jdrs>img{
+    position: absolute;
+    top: 3px;
+    left: 36px;
+}
+.content_bottom_left_top_csrks>span,.content_bottom_left_top_jdrs>span{
+    position: absolute;
+    left: 80px;
+    top: 2px;
+    font-size: 1.2rem;
+    color: #f2b54d;
+    font-weight: 600;
+}
+.content_bottom_left_top_csrks>.note,.content_bottom_left_top_jdrs>.note{
+    position: absolute;
+    left: 80px;
+    top: 26px;
+}
+/*.content_bottom_left_top_jdrs{
+    border:1px solid black;
+    width: 200px;
+    display: inline-block;
+    margin-top: 66px;
+    margin-left: 23px;
+    text-align: center;
+    border-radius: 3px;
+}*/
+ .content_bottom_left_middle{
+    /*border:1px solid black;*/
+    position: relative;
+ }
+ .content_bottom_left_middle>.jkda,.content_bottom_left_middle>.jdl,.content_bottom_left_middle>.ydtjlddafs,.content_bottom_left_middle>.syl{
+    display: inline-block;
+    position: absolute;
+ }
+.content_bottom_left_middle>.jkda{
+    left: 34px;
+    top: 22px;
+}
+.content_bottom_left_middle>.jdl{
+     left: 154px;
+    top: 26px;
+}
+.content_bottom_left_middle>.ydtjlddafs{
+     left: 279px;
+    top: 26px;
+}
+.content_bottom_left_middle>.syl{
+    left: 446px;
+    top: 26px;
+}
+table
+  {
+  border-collapse:collapse;
+     /*border-color: #e2e2e2;*/
+  }
+table{
+    position: absolute;
+    left: 25px;
+    top: 241px;
+}
+table,th, td
+  {
+  border: 1px solid #e2e2e2;
+  }
+th{
+    height: 41px;
+    position: relative;
+}
+/*.th_fjh,th_zyglxt{*/
+    /*display: inline-block;*/
+    /*height: 7px;*/
+    /*width: 11px;*/
+/*}*/
+td{
+    width:132px;
+    height: 41px;
+    border-collapse: collapse;
+    text-align: center;
+}
+td>span,th,td{
+    font-size: 0.8rem;
+    color: #4298fb;
+    font-weight: 600;
+}
+.img_fjh{
+    display: inline-block;
+    position: absolute;
+    top:10px;
+    left: 23px;
+    /*border: solid 1px red;*/
+}
+.img_zyjkglv{
+    display: inline-block;
+    position: absolute;
+    top:10px;
+    left: 65px;
+    /*border: solid 1px red;*/
+}
+.content_bottom_right_top{
+    font-size: 17px;
+    color: #00a2ff;
+        display: inline-block;
+        height: 34px;
+        width: 259px;
+        /*border:1px solid black;*/
+position: relative;
+}
+.img_tubiao{
+    left: 38px;
+    top: 122px;
+position: absolute;
+
+
+}
+.content_bottom_right{position: relative}
+.content_bottom_right_top_number>.note{
+    display: inline-block;
+}
+.content_bottom_right_top_number{
+    position: absolute;
+    top: 36px;
+    left: 433px;
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: #f5a623;
+}
+.content_bottom_right_top{
+    position: absolute;
+    top: 32px;
+    left: 23px;
+}
+#chartmain3{
+    position: absolute;
+    left: 128px;
+    top: 24px;
+}
+   #chartmain4{
+       position: absolute;
+       left:37px;
+       top:-9px;
+       display: inline-block;
+   }
+#chartmain5{
+    position: absolute;
+    left:287px;
+    top: 71px;
+    display: inline-block;
+}
+
+	</style>
+
+<body>
+    <!-- 上边的导航START -->
+<!--<div class="nav">-->
+    <!--<div class="nav_zjgs"><img src="img/images/001_06.gif"></div> -->
+    <!--<div class="nav_qqjkxxpt">-->
+            <!--<span>区域健康信息平台</span>-->
+     <!--</div> -->
+     <!--<div class="nav_right">-->
+    <!--<div class="nav_user"><img src="img/images/001_03.gif">-->
+        <!--<span>王某某，欢迎您！</span></div>-->
+    <!--<div class="nav_message"><img src="img/images/001_09.gif"></div>-->
+    <!--<div class="nav_man"><img src="img/images/001_11.gif"></div>-->
+    <!--<div class="nav_setting"><img src="img/images/001_13.gif"></div>-->
+    <!--<div class="nav_kaiguan"><img src="img/images/001_15.gif"></div>-->
+<!--</div> -->
+<!--</div>-->
+    <!--&lt;!&ndash; 上边的导航END &ndash;&gt;-->
+    <!--&lt;!&ndash;左边盒子START&#45;&#45;&ndash;&gt;-->
+<!--<div class="aside">-->
+	<!--<div class="aside_left">-->
+       <!---->
+       <!--<div class="dh"><span> 导航</span></div>-->
+       <!--<div class="zz"><span> 组织</span></div>-->
+       <!--<div class="wx"><span> 微讯</span></div>-->
+       <!--<div class="bq"><span> 便签</span></div>-->
+    <!--</div>-->
+	<!--<div class="aside_right">-->
+    <!---->
+      <!--<div class="aside_right_grsw">-->
+            <!--<span>个人事务</span>-->
+     <!--</div>-->
+    <!--<ul>-->
+        <!--<li><a href="#">&nbsp;&nbsp;电子邮件</a></li></br>-->
+        <!--<li><a href="#">&nbsp;&nbsp;消息管理</a></li></br>-->
+        <!--<li><a href="#">&nbsp;&nbsp;手机短信</a></li></br>-->
+        <!--<li><a href="#">&nbsp;&nbsp;文件通知</a></li></br>-->
+        <!--<li><a href="#">&nbsp;&nbsp;投票</a></li></br>-->
+        <!--<li><a href="#">&nbsp;&nbsp;日程安排</a></li></br>-->
+        <!--<li><a href="#">&nbsp;&nbsp;工作日志</a></li></br>-->
+        <!--<li><a href="#">&nbsp;&nbsp;通讯簿</a></li></br>-->
+        <!--<li><a href="#">&nbsp;&nbsp;个人文件柜</a></li>-->
+    <!--</ul>  -->
+    <!--<div class="aside_right_list">-->
+            <!--<span>人口计生</span>-->
+     <!--</div>  -->
+      <!--<div class="aside_right_list">-->
+            <!--<span>公共卫生</span>-->
+     <!--</div>   -->
+      <!--<div class="aside_right_list">-->
+            <!--<span>医疗服务</span>-->
+     <!--</div>   -->
+      <!--<div class="aside_right_list">-->
+            <!--<span>工作流</span>-->
+     <!--</div> -->
+      <!--<div class="aside_right_list">-->
+            <!--<span>行政办公</span>-->
+     <!--</div>  -->
+      <!--<div class="aside_right_list">-->
+            <!--<span>管理中心</span>-->
+     <!--</div>   -->
+      <!--<div class="aside_right_list">-->
+            <!--<span>电子期刊</span>-->
+     <!--</div>   -->
+      <!--<div class="aside_right_list">-->
+            <!--<span>平台展示</span>-->
+     <!--</div>-->
+      <!--<div class="aside_right_list">-->
+            <!--<span>运维管理</span>-->
+     <!--</div>  -->
+      <!--<div class="aside_right_list">-->
+            <!--<span>交流园地</span>-->
+     <!--</div>   -->
+      <!--<div class="aside_right_list">-->
+            <!--<span>系统管理</span>-->
+     <!--</div>     -->
+    <!--</div>-->
+    <!-- 这里引用一个jquery事件点击触发，显示li，START -->
+    <!--<script type="text/javascript">-->
+        <!--$(document).ready(function(){-->
+    <!--var opt = $(".aside_right_grsw");-->
+    <!--var oContent = $('ul');-->
+    <!--opt.click(function(){-->
+        <!--// oContent.show();-->
+        <!--oContent.slideToggle();-->
+    <!--});-->
+<!--&lt;!&ndash;});&ndash;&gt;-->
+<!--//    </script>-->
+<!--<! 这里引用一个jquery事件点击触发，显示li，END &ndash;&gt;-->
+<!--</div>-->
+    <!--&lt;!&ndash;左边盒子END&#45;&#45;&#45;&#45;&ndash;&gt;-->
+    <!-- 右边的盒子START -->
+<div class="content">
+    <!-- 右边上层盒子START -->
+    <div class="content_top">
+        <div class="content_top_left">
+          <div class="content_top_left_top">
+              <div class="content_top_left_grsw"><img src="img/images/002_03.gif"></div>
+              <div class="content_top_left_yj"><img src="img/images/002_07.gif"></div>
+              <div class="content_top_left_gjtz"><img src="img/images/002_09.gif"></div>
+              <div class="content_top_left_wjbl"><img src="img/images/002_11.gif"></div>
+              <div class="content_top_left_xxtx"><img src="img/images/002_13.gif"></div>
+              <div class="content_top_left_rcap"><img src="img/images/002_15.gif"></div>
+              <div class="content_top_left_xtsz"><img src="img/images/002_17.gif"></div>            
+          </div>
+          <div class="content_top_left_bottom">
+              <div class="content_top_bottom_kjfs"><img src="img/images/002_26.gif"></div>              
+              <div class="content_top_bottom_jkda"><span>健康档案<img src="img/images/002_29.gif"></span></div>
+              <div class="content_top_bottom_tjda"><span>体检档案<img src="img/images/002_32.gif"></span></div>
+              <div class="content_top_bottom_rkzt"><span>人口主题<img src="img/images/002_34.gif"></span></div>
+              <div class="content_top_bottom_gxyda"><span>高血压档案<img src="img/images/002_36.gif"></span></div>   
+         </div>
+        </div>
+        <div class="content_top_right">
+            <div class="content_top_right_jbpzqk"><img src="img/images/003_03.gif"></div>
+            <div class="content_top_right_jg"><img src="img/images/003_06.gif"></div>
+            <!--第一个表START-->
+            <div class="content_top_right_jgzs">
+                <div id="chartmain2" style="width:151px; height: 167px;"></div>
+                <script type="text/javascript">
+                     var option = {
+
+                            tooltip : {
+                            formatter: "{a} <br/>{b} : {c}%"
+                            },
+                            toolbox: {
+                            show : false,
+                            feature : {
+                            mark : {show: false},
+                            restore : {show: false},
+                            saveAsImage : {show: false}
+                            }
+                            },
+                            series : [
+                          {    max:120,
+                              splitNumber:3,
+                              startAngle:180,
+                            endAngle:0,
+                            //  设置图表为半圆形
+                            name:'业务指标',
+//                              center:['11%','30%'],
+                            type:'gauge',
+                            title:{
+                              show:true,
+                                offsetCenter:[0,"26%"],
+                                color:"#6b91ec",
+                                fontSize:13,
+                                fontWeight:'bold'
+                            },
+                            axisLine: {
+                             lineStyle: {
+                             width: 14, // 这个是修改宽度的属性
+//                                 shadowBlur:18,
+                             color: [[0.8, '#f8bb35'], [1.2, '#e2e2e2']]//调整颜色
+                               }
+                              },
+                                pointer:{
+                                    length:"38%",
+                                    width:3
+                                },
+
+                                    //大指针设置end
+                                    splitLine:{
+                                        show:false,
+                                        length:15,
+                                    },//刻度盘前方指针显示属性
+                                    itemGap: 30,
+                            detail : {formatter:'{value}'},
+                             detail:{
+                              show:true,
+                                offsetCenter:[0,"26%"],
+//                                color:"#6b91ec",
+                                fontSize:15,
+                                 fontWeight:'bold',
+                                offsetCenter:[0,'-29%']
+
+                            },
+
+                            data:[{ name: '机构总数',value: 50}],
+                            radius:"74%",
+                                    axisLabel:{
+                                        show:true,
+                                        textStyle:{
+                                            fontSize:9,
+                                            color:"#e2e2e2"
+                                        }
+                                    },
+
+//                                    markArea:{
+//                                        label:{
+//                                            normal:{
+//                                                textStyle:{
+//                                                    fontWeight:'normal',
+//                                                    fontSize:19
+//                                                }
+//                                            }
+//
+//                                     }
+//                                    }
+//                              color:['#f8bb35',"#e2e2e2","#e2e2e2"],
+                            }
+                            ]
+                            };
+                     var myChart = echarts.init(document.getElementById('chartmain2'));
+                         myChart.setOption(option);
+                </script>
+            </div>
+            <!--第一个表END-->
+            <!--第二个表START-->
+            <div class="content_top_right_noname">
+              <div id="chartmain" style="width:300px; height: 200px;"></div>
+                <script type="text/javascript">
+                var option = {
+                    title : {
+                    text: '',
+                    subtext: '',
+                    x:'right'
+                    },
+                    color: ['#ff7a00','#00a2ff','#ffc512','#7def00'],
+                    tooltip : {
+                    trigger: 'item',
+                    formatter: "{a} <br/>{b} : {c} ({d}%)"
+                    },
+
+                    legend: {
+                    x : '138',
+                    y : '0',
+
+                    data:['村卫生室','社区卫生服务中心','社区卫生服务站','社区卫生服务']
+                    },
+                    icon:'circle',
+                    toolbox: {
+                    show : true,
+                    feature : {
+                    mark : {show: false},
+                    dataView : {show: false, readOnly: false},
+                    magicType : {
+                    show: true,
+                    type: ['pie', 'funnel']
+                     },
+                    restore : {show: false},
+                    saveAsImage : {show: false}
+                      }
+                 },
+                    calculable : true,
+                    series : [
+                    {
+                     name:'半径模式',
+                     type:'pie',
+                     radius : [10, 43],
+                     center : ['25%', 50],
+                     roseType : 'radius',
+                     width: '40%',       // for funnel
+                     max: 40,            // for funnel
+
+                     itemStyle : {
+                     normal : {
+                     label : {
+                        show : false
+                     },
+                    labelLine : {
+                        show : false
+                    }
+                },
+                    emphasis : {
+                    label : {
+                        show : true
+                    },
+                    labelLine : {
+                        show : true
+                    }
+                }
+            },
+                 data:[
+                {value:2210, name:'村卫生室'},
+                {value:3000, name:'社区卫生服务中心'},
+                {value:1100, name:'社区卫生服务站'},
+                {value:3400, name:'社区卫生服务'},
+               ]
+             },
+
+          ]
+        };
+                 //初始化echarts实例
+            var myChart = echarts.init(document.getElementById('chartmain'));
+                 //使用制定的配置项和数据显示图表
+           myChart.setOption(option);
+          </script>
+          </div>
+            <!-- 第二个表END  -->
+            <div class="content_top_right_ry"><img src="img/images/003_14.gif"></div>
+            <div class="content_top_right_shuju">
+                <div class="content_top_right_qkys"><span>34210</span><br><div class="note">全科医生</span></div></div>
+                <div class="content_top_right_xcys"><span>34210</span><br><div class="note">乡村医生</span></div></div>
+                <div class="content_top_right_wsjsry"><span>34210</span><br><div class="note">卫生技术人员</span></div></div>
+                <div class="content_top_right_qtjsry"><span>34210</span><br><div class="note">其他技术人员</span></div></div>            
+                <div class="content_top_right_glry"><span>34210</span><br><div class="note">管理人员</span></div></div>
+            </div>
+        </div>
+    </div>
+    <!-- 右边上层盒子END -->
+    <!-- 中间的盒子START -->
+    <div class="content_middle">
+        <div class="content_middle_jbggws"><img src="img/images/004_03.gif"></div>
+            <div class="content_middle_span">
+                <div class="content_middle_box"><span>130000</span><br>
+                <div class="note">常住人口（万人）</div></div>
+                <div class="content_middle_box"><span>50000</span><br>
+                <div class="note">电子健康档案数（万份）</div></div>
+                <div class="content_middle_box"><span>57.8</span><br>
+                <div class="note">建档率（%）</div></div>
+                <div class="content_middle_box"><span>236</span><br>
+                <div class="note">乡镇卫生院（万个）</div></div>
+                <div class="content_middle_box"><span>32</span><br>
+                <div class="note">社区卫生服务机构（万个）</div></div>
+                <div class="content_middle_box"><span>45</span><br>
+                <div class="note">村卫生室（万个）</div></div>
+                <div class="content_middle_box"><span>55</span><br>
+                <div class="note">人均基本公共卫生服务补助（元)</div></div>
+                <div class="content_middle_box"><span>50000</span><br>
+                <div class="note">预防接种（万人次）</div></div>
+                <div class="content_middle_box"><span>29000</span><br>
+                <div class="note">0-6岁儿童（万个）</div></div>
+                <div class="content_middle_box"><span>4234</span><br>
+                <div class="note">孕产妇（万个）</div></div>
+                <div class="content_middle_box"><span>40</span><br>
+                <div class="note">老年人（万个）</div></div>
+            </div>
+                  </div>
+    <!-- 中间的盒子END -->
+    <!-- 底下的盒子START -->
+    <div class="content_bottom">
+        <div class="content_bottom_left">
+           <div class="content_bottom_left_jkda">
+               <img src="img/images/004_07.gif">
+           </div> 
+           <div class="content_bottom_left_top">
+               <div class="content_bottom_left_top_csrks"><img src="img/images/004_15.gif">
+                <span>1300000</span><div class="note">常住人口人数（万人）</div>
+            </div>
+               <div class="content_bottom_left_top_jdrs"><img src="img/images/004_17.gif">
+                <span>80450</span>
+                <div class="note">建档人数（万人）</div></div>
+           </div>
+           <div class="content_bottom_left_middle">
+               <div class="jkda"><img src="img/images/004_21.gif"></div>
+               <!--<div class="jdl"><img src="img/images/004_23.gif"></div>-->
+               <!--<div class="ydtjlddafs"><img src="img/images/004_25.gif"></div>-->
+               <!--<div class="syl"><img src="img/images/004_27.gif"></div>-->
+           </div>
+    <!--第三个表格START-->
+            <div class="content_bottom_left_chart">
+          <div id="chartmain3" style="width:700px; height: 440px;">
+            <script type="text/javascript">
+             var labelTop = {
+             normal : {
+             label : {
+             show : true,
+             position : 'center',
+             formatter : '{b}',
+             textStyle: {
+             baseline : 'bottom'
+             }
+             },
+
+
+
+
+             labelLine : {
+             show : 'none',
+//                 normal:{
+//                    length:0,
+////                     length2:0,
+//                 }
+
+
+
+
+
+
+
+              }
+            }
+         };
+             var labelFromatter = {
+             normal : {
+             label : {
+             formatter : function (params){
+             return 100 - params.value + '%'
+             },
+
+             textStyle: {
+             baseline : 'top'
+             }
+          }
+        },
+       }
+             var labelBottom = {
+             normal : {
+             color: '#ccc',
+             show:false,
+             label : {
+             show : false,
+             position : 'center'
+             },
+             labelLine : {
+             show : false
+            }
+           },
+             emphasis: {
+             color: 'rgba(0,0,0,0)'
+          }
+        };
+             var radius = [16, 22];
+             var option = {
+             legend: {
+              x : 'left',
+              y : '40%',
+             icon:'circle',
+             data:[
+            "建档率",'有动态记录的档案分数','使用率',
+             '新生儿访视率'
+            ]
+         },
+
+
+
+
+
+        // title : {
+        // text: '',
+        // subtext: '',
+        // x: 'left'
+        //  },
+        toolbox: {
+        show : true,
+        feature : {
+        dataView : {show: true, readOnly: false},
+         magicType : {
+           show: true,
+             type: ['pie', 'funnel'],
+              option: {
+                  funnel: {
+                    width: '20%',
+                    height: '30%',
+                     itemStyle : {
+                       normal : {
+                        label : {
+                           formatter : function (params){
+                           return 'other\n' + params.value + '%\n'
+                                    },
+                                    textStyle: {
+                                        baseline : 'middle'
+                                    },
+                            
+                                }
+                            },
+                        }
+                    }
+                }
+            },
+            restore : {show: false},
+            saveAsImage : {show: false}
+        }
+    },
+
+
+
+
+
+
+
+
+    series : [
+
+
+        {
+            type : 'pie',
+            center : ['10%', '30%'],
+            radius : radius,
+            // markPoint:{symbol:'circle'},
+           // pie{tooltip:[15,55],},
+            x: '33%', // for funnel
+// graphic:[{
+//        type:'text',
+//        left:'center',
+//        top:'9%',
+//        z:10,
+//        style:{
+//             fill:'#686868',
+//            text:'vale',
+//            font: '28 Microsoft YaHei'
+//        }
+//    }],
+
+            itemStyle : labelFromatter,
+             color:['#f5a623'],
+            data : [
+                {name:'other', value:'56',label:{normal:{position:'center',show:false}},itemStyle : labelBottom},
+                {name:'建档率', value:'44',show:false,itemStyle : labelTop},
+            ],
+            label:{normal:{position:'center'}}
+
+        },
+
+        {
+            type : 'pie',
+            center : ['30%', '30%'],
+            radius : radius,
+            x:'20%', // for funnel
+            itemStyle : labelFromatter,
+           color:['#06eb00'],
+            data : [
+                {name:'other', value:56,label:{normal:{position:'center',show:false}},   itemStyle : labelBottom},
+                {name:'有动态记录的档案分数', value:34,itemStyle : labelTop}
+            ],
+             label:{normal:{position:'center'}}
+
+        },
+        {
+            type : 'pie',
+            center : ['50%', '30%'],
+            radius : radius,
+            x:'40%', // for funnel
+            itemStyle : labelFromatter,
+            color:['#00a2ff'],
+            data : [
+                {name:'other', value:65,label:{normal:{position:'center',show:false}}, itemStyle : labelBottom},
+                {name:'使用率', value:35,itemStyle : labelTop}
+            ],
+             label:{normal:{position:'center',show:true}}
+
+        },
+        {
+            type : 'pie',
+            center : ['50%', '60%'],
+            radius : radius,
+            y: '33%',   // for funnel
+            x:'4%', // for funnel
+            itemStyle : labelFromatter,
+            color:['#ff7a00'],
+            data : [
+                {name:'other', value:76,label:{normal:{position:'center',show:false}}, itemStyle : labelBottom},
+                {name:'新生儿访视率', value:24,itemStyle : labelTop}
+            ],
+             label:{normal:{position:'center'}}
+        },
+    ]
+};
+    //初始化echarts实例
+        var myChart = echarts.init(document.getElementById('chartmain3'));
+        //使用制定的配置项和数据显示图表
+        myChart.setOption(option);
+            </script>
+           </div>
+             </div>
+    <!--第三个表格END-->
+           <table class="content_bottom_left_bottom">
+               <tr>
+                    <td>
+                        <span>834210</span>
+                        <div class="note"> 老年人体检
+                        </div></td>
+                    <td>
+                        <span>134210</span>
+                        <div class="note">妇女病普查
+                        </div></td>
+                    <td>
+                        <span>934210</span>
+                        <div class="note">学生体检
+                        </div></td>
+               </tr>
+               <tr>
+                    <td>
+
+                    <span>34210</span>
+                    <div class="note">应管理儿童数
+                    </div></td>
+                    <td>
+                    <span>34210</span>
+                    <div class="note">活产数</div>
+                    </td>
+                    <td>
+                    <span>3421</span>
+                    <div class="note">新生儿访视</div>
+                    </td>
+               </tr>
+               <!--<div class="xsefsl"></div>-->
+           </table>
+        </div>
+        <div class="content_bottom_right">
+            <img src="img/images/004_10.gif">
+             <div class="content_bottom_right_top">老年人、高血压、糖尿病人群</div>
+           <div class="img_tubiao">
+            <div class="img_lnr"><img src="img/images/008_03.gif"></div>
+            <div class="img_gxy"><img src="img/images/008_06.gif"></div>
+            <div class="img_tnb"><img src="img/images/008_08.gif"></div>
+</div>
+     <!--第四个表格START-->
+         <div class="content_bottom_right_left">
+           <div id="chartmain4" style="width:201px; height: 226px;">
+            <script type="text/javascript">
+                var placeHoledStyle = {
+                normal:{
+                barBorderColor:'rgba(0,0,0,0)',
+                color:'rgba(0,0,0,0)'
+                 },
+                    emphasis:{
+                    barBorderColor:'rgba(0,0,0,0)',
+                    color:'rgba(0,0,0,0)'
+                     }
+                    };
+                var dataStyle = {
+                normal: {
+                    label : {
+                    show: true,
+                    position: 'insideLeft',
+                    formatter: '{c}%'
+                         }
+                     }
+                    };
+                    option = {
+                    title: {
+                    text: '管理人数和管理人数占比',
+
+                        y:'35%',
+                    subtext: '（万人次）',
+                        textStyle:{
+                        Color:'#4a4a4a',
+                            fontSize:15,
+                            fontWeight:'600',
+                        },
+                    sublink: 'http://e.weibo.com/1341556070/AiEscco0H'
+                     },
+
+                    tooltip : {
+
+//                 axisPointer:{
+//                     type:'none'
+//                 },
+
+                        trigger: 'axis',
+                        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                        type : 'none'        // 默认为直线，可选为：'line' | 'shadow'
+                        },
+                        formatter : '{b}<br/>{a0}:{c0}%<br/>{a2}:{c2}%<br/>{a4}:{c4}%<br/>{a6}:{c6}%'
+                        },
+                        legend: {
+                            x:0,
+                            y: 0,
+                            itemGap : document.getElementById('chartmain4').offsetWidth / 8,
+                            data:['']
+                            },
+                            toolbox: {
+                            show : true,
+                            feature : {
+                            mark : {show: true},
+                            dataView : {show: false, readOnly: false},
+                            restore : {show: false},
+                            saveAsImage : {show:false}
+                         }
+                     },
+                     grid: {
+                        y: 47,
+                       y2: 10,
+                         x:33,
+                         x2:16
+                         },
+                         grid:{left:'2%',right:"2",bottom:"10%",containLabel:true},
+                       xAxis : [
+                                         {
+                                         show:false,
+                                         type : 'value',
+                                         position: 'top',
+                                         splitLine: {show: false},
+                                         axisLabel: {show: false},
+//                                         axisLine:{
+//                                             lineStyle:{width:0}
+//                                         }
+
+                                         }
+                             ],
+                      yAxis : [{
+                                show:true,
+                                type : 'category',
+                                splitLine: {show: false},
+                                data : ['糖尿病','高血压','老年人'],
+
+                         textStyle:{
+
+                           color:['#ccc']},
+                                max:5,
+                                 axisLine:{
+                                             lineStyle:{width:0},
+                                     color:'#fff'
+                                         }
+                                         }
+                            ],
+
+                         label:{
+                               distance:144,
+                             color:'#f5f5f5',
+//                       padding[33,33,33,33]
+                            fontSize: 11,
+                             fontWeight:'bolder',
+                             color:'#4a90e2',
+                            },
+                        itemStyle:{
+//                            color:['#f5a623'],
+                            barBorderRadius:[8,8,8,8],
+                            opacity:0.9,
+
+
+                        },
+
+                        series : [
+                        {
+                            barWidth:13,
+//                            barGap:'60%',
+                            name:'显示',
+
+
+                            type:'bar',
+                            stack: '总量',
+                            itemStyle : dataStyle,
+                            data:[  2.2,8.2,98.8,],
+                                            //颜色设定START
+                                   color: function(params) {
+                                        var colorList = [
+                                            "#6b91ec",
+                                            "#7ed321",
+                                            "#f5a623",
+                                        ];
+                                        return colorList[params.dataIndex];
+                                    },
+                                            //  颜色设定END
+                     }
+                    ]
+                };
+
+  var myChart = echarts.init(document.getElementById('chartmain4'));
+    myChart.setOption(option);
+   </script>
+
+</div>
+         </div>
+     <!--第四个表格END-->
+     <!--第五个表格START-->
+          <div class="content_bottom_right_right">
+            <div id="chartmain5" style="width:488px; height: 283px;">
+                <script type="text/javascript">
+                var labelTop = {
+                normal : {
+                label : {
+                show : true,
+                position : 'center',
+                 formatter : '{b}',
+                textStyle: {
+                baseline : 'bottom'
+                 }
+                 },
+                 labelLine : {
+            show : false
+             }
+             }
+            };
+            var labelFromatter = {
+             normal : {
+                 label : {
+                formatter : function (params){
+                return 100 - params.value + '%'
+             },
+            textStyle: {
+                baseline : 'top'
+            }
+        }
+    },
+}
+            var labelBottom = {
+                normal : {
+                color: '#ccc',
+                label : {
+                show : true,
+                position : 'center'
+                },
+                labelLine : {
+            show : false
+                 }
+                },
+                emphasis: {
+             color: 'rgba(0,0,0,0)'
+            }
+            };
+            var radius = [18, 23];
+                option = {
+
+            legend: {
+                x : '9%',
+                y : '43%',
+                data:[
+                '老年人','高血压','糖尿病',
+                    ],
+                 icon:'triangle'
+             },
+            title : {
+            text: '规范管理率',
+                subtext: '',
+                x: 'left',
+                y:'',
+                 textStyle:{
+                        Color:'#4a4a4a',
+                            fontSize:15,
+                            fontWeight:'600',
+                       zlevel:20
+                        },
+
+                },
+
+//                 color:'#00a',
+//                    fontSize:8,
+//                     zlevel:66,
+                toolbox: {
+                show : true,
+                feature : {
+                dataView : {show: false, readOnly: false},
+                magicType : {
+                show: true,
+                type: ['pie', 'funnel'],
+                option: {
+                    funnel: {
+                        width: '20%',
+                        height: '30%',
+                        itemStyle : {
+                            normal : {
+                                label : {
+                                    formatter : function (params){
+                                        return 'other\n' + params.value + '%\n'
+                                    },
+                                    textStyle: {
+                                        baseline : 'middle'
+                                    }
+                                }
+                            },
+                        }
+                    }
+                }
+            },
+            restore : {show: false},
+            saveAsImage : {show: false}
+         }
+         },
+        series : [
+        {
+            type : 'pie',
+            center : ['10%', '30%'],
+            radius : radius,
+            x: '0%', // for funnel
+            itemStyle : labelFromatter,
+
+             color:['#f5a623'],
+            data : [
+                {name:'other', value:46,label:{normal:{position:'center',show:false}}, itemStyle : labelBottom},
+                {name:'老年人', value:54,itemStyle : labelTop}
+            ],
+             label:{normal:{position:'center'}}
+        },
+        {
+            type : 'pie',
+            center : ['30%', '30%'],
+            radius : radius,
+            x:'20%', // for funnel
+            itemStyle : labelFromatter,
+
+             color:['#06eb00'],
+            data : [
+                {name:'other', value:56,label:{normal:{position:'center',show:false}}, itemStyle : labelBottom},
+                {name:'高血压', value:44,itemStyle : labelTop}
+            ],
+             label:{normal:{position:'center'}}
+        },
+        {
+            type : 'pie',
+            center : ['50%', '30%'],
+            radius : radius,
+            x:'40%', // for funnel
+            itemStyle : labelFromatter,
+             color:['#00a2ff'],
+            data : [
+                {name:'other',label:{normal:{position:'center',show:false}}, value:65, itemStyle : labelBottom},
+                {name:'糖尿病', value:35,itemStyle : labelTop}
+            ],
+             label:{normal:{position:'center'}}
+        },
+    ]
+};
+  var myChart = echarts.init(document.getElementById('chartmain5'));
+    myChart.setOption(option);
+   </script>
+                </div>
+           </div>
+     <!--第五个表格END-->
+            <div class="content_bottom_right_top_number"><span>13788</span><div class="note">万人</div></div>
+  <table class="content_bottom_right_bottom">
+    <tr class="content_bottom_right_bottom_th">
+        <th>
+            <div class="img_fjh"><img src="img/images/008_13.gif"></div>肺结核</th>
+        <th><span>456</span>万人</th>
+        <th colspan="2">
+          <div class="img_zyjkglv">  <img src="img/images/008_15.gif"></div>
+             中医健康管理率</th>
+    </tr>
+    <tr class="content_bottom_right_bottom_td">
+        <td>10357<br><div class="note">规范管理人数</div></td>
+        <td>49.2%<br><div class="note">规范管理率</div></td>
+        <td>37.9%<br><div class="note">老年人</div></td>
+        <td>49.2%<br><div class="note">0-36月儿童</div></td>
+    </tr>
+</table>
+            </div>
+
+        </div>
+      <!--<div class="content_bottom_right_bottom">-->
+          <!--<div class="content_bottom_right_bottom_left"></div>-->
+          <!--<div class="content_bottom_right_bottom_right">-->
+              <!--<div class="content_bottom_right_bottom_right_table_top"></div>-->
+              <!--<div class="content_bottom_right_bottom_right_table_bottom"></div>-->
+          <!--</div>-->
+      <!--</div>-->
+    <!-- 底下的盒子END -->
+</div>
+    <!-- 右边的盒子END -->
+</body>
+</html>
